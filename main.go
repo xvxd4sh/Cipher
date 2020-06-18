@@ -15,7 +15,7 @@ limitations under the License.
 */
 package main
 
-import "github.com/xvxd4sh/Cipher/chipher/cmd"
+import "github.com/xvxd4sh/Cipher/tree/master/cmd"
 
 func main() {
 	cmd.Execute()
