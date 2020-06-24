@@ -31,7 +31,7 @@ var cfgFile string
 var rootCmd = &cobra.Command{
 	Use:   "Cipher",
 	Short: "Command-line Interface for message decipher",
-	Long:  `Simple command line Tool`,
+	Long:  `Simple command line Tool for quick decryption of secret messages using key and different based systems `,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	//Run: func(cmd *cobra.Command, args []string) { fmt.Println("Hello") },

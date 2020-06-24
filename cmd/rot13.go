@@ -16,6 +16,7 @@ limitations under the License.
 package cmd
 
 import (
+	"cipher/cmd/srv"
 	"fmt"
 
 	"github.com/spf13/cobra"
@@ -36,22 +37,21 @@ var rot13Cmd = &cobra.Command{
 		read, err := cmd.Flags().GetBool("read")
 		write, err2 := cmd.Flags().GetBool("write")
 		if (read == true) && (write == true) {
-			fmt.Println("Bro choose one")
+			fmt.Println("Choose One please")
 		} else if read == true {
 			fmt.Println("reading secret file")
+			srv.Rot13Read(args)
 			if err != nil {
 				fmt.Println(err)
 			}
 		} else if write == true {
 			fmt.Println("writing a secret file")
+			srv.Rot13Write(args)
 			if err != nil {
 				fmt.Println(err2)
 			}
-
-			fmt.Printf("args = %v", args)
 		} else {
-			fmt.Println("error")
-			fmt.Println(read, write)
+			fmt.Println("error, please proceed to the manual")
 		}
 	},
 }

@@ -15,7 +15,9 @@ limitations under the License.
 */
 package main
 
-import "cipher/cmd"
+import (
+	"cipher/cmd"
+)
 
 func main() {
 	cmd.Execute()
