@@ -86,5 +86,21 @@ func CaesarRead(args []string, key int) {
 
 func CaesarWrite(args []string, key int) {
 	//fmt.Println("writing")
-	fmt.Println(key)
+	final := ""
+	for i := 0; i < len(args); i++ {
+		word := args[i]
+		for j := 0; j < len(word); j++ {
+			if key > 0 {
+				if word[j] > 'A' && word[j] < 'Z' {
+					final += string(Capabet[((int(word[j])-'A')+key)%26])
+				} else {
+					final += string(Lowebet[((int(word[j])-'a')+key)%26])
+				}
+			} else {
+				final += string(word[j])
+			}
+		}
+		final += " "
+	}
+	fmt.Println(final)
 }
