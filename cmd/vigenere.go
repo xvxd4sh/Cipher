@@ -17,7 +17,6 @@ package cmd
 
 import (
 	"cipher/cmd/srv"
-	"fmt"
 
 	"github.com/spf13/cobra"
 )
@@ -61,11 +60,4 @@ func init() {
 	vigenereCmd.Flags().BoolP("read", "r", false, "decrypting the secret message")
 	vigenereCmd.Flags().BoolP("write", "w", false, "encrypting the secret message")
 	vigenereCmd.Flags().StringP("key", "k", "", "base key")
-}
-
-func printMatrix(randMatrix [][]byte) {
-	//looping over 2D slice and extracting 1D slice to val
-	for _, val := range randMatrix {
-		fmt.Printf("%c", val) // printing each slice
-	}
 }

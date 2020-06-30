@@ -37,11 +37,11 @@ var railsCmd = &cobra.Command{
 		if read {
 			srv.RailsRead(args, key)
 		} else if write {
-
+			srv.RailsWrite(args, key)
 		} else {
 			fmt.Println("error")
 		}
-		fmt.Println("rails called")
+		//fmt.Println("rails called")
 	},
 }
 
