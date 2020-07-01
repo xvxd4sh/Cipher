@@ -1,16 +1,17 @@
 package srv
 
 import (
-	"fmt"
 	"math"
 )
 
-func roundup(num int) int {
-	numround := math.Round(float64(num))
-	if (numround - float64(num)) > .5 {
+func roundup(num float64) float64 {
+	numround := math.Round(num)
+	//fmt.Println(numround - num)
+	if (numround - num) < 0.0 {
 		numround += 1.0
 	}
-	return int(numround)
+	//fmt.Println(numround)
+	return numround
 }
 
 func findint(key int, list []int) int {
@@ -73,12 +74,15 @@ func stringify(strings []string) string {
 	return word
 }
 
-func ColumnaRead(args []string, key string) {
+func ColumnaRead(args []string, key string) []string {
 	numlist := numerify(key)
 	gentext := stringify(args)
-	keyint := roundup(len(gentext) / len(numlist))
+	keyintfloat := roundup(float64(len(gentext)) / float64(len(key)))
+	keyint := int(keyintfloat)
 	list := makeabyteMatrix(keyint, len(key))
 	placement := 0
+
+	leftover := ((keyint * len(key)) - len(gentext))
 
 	//	fmt.Println(gentext)
 	//	fmt.Println(len(gentext))
@@ -92,18 +96,24 @@ func ColumnaRead(args []string, key string) {
 		}
 	}
 	final := ""
+	finalList := make([]string, 1)
+
 	for i := 0; i < keyint; i++ {
 		for j := 0; j < len(key); j++ {
 			final += string(list[i][j])
 		}
 	}
-	fmt.Println(final)
+
+	//fmt.Println(final)
+	finalList[0] = final
+	return finalList
 }
 
-func ColumnaWrite(args []string, key string) {
+func ColumnaWrite(args []string, key string) []string {
 	numlist := numerify(key)
 	gentext := stringify(args)
-	keyint := roundup(len(gentext) / len(numlist))
+	keyintfloat := roundup(float64(len(gentext)) / float64(len(key)))
+	keyint := int(keyintfloat)
 	list := makeabyteMatrix(keyint, len(key))
 	placement := 0
 
@@ -113,16 +123,21 @@ func ColumnaWrite(args []string, key string) {
 				list[x][y] = gentext[placement]
 				placement++
 			} else {
-				list[x][y] = 'x'
+				list[x][y] = '*'
 			}
 		}
 	}
 	//fmt.Printf("%c",list)
 	final := ""
+	finalList := make([]string, 1)
 	for i := 0; i < len(numlist); i++ {
 		for j := 0; j < keyint; j++ {
-			final += string(list[j][findint(i, numlist)])
+			if list[j][findint(i, numlist)] != '*' {
+				final += string(list[j][findint(i, numlist)])
+			}
 		}
 	}
-	fmt.Println(final)
+	//fmt.Println(final)
+	finalList[0] = final
+	return finalList
 }

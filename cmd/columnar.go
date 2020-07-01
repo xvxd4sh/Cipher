@@ -34,9 +34,11 @@ var columnarCmd = &cobra.Command{
 		write, _ := cmd.Flags().GetBool("write")
 		key, _ := cmd.Flags().GetString("key")
 		if read {
-			srv.ColumnaRead(args, key)
+			reads := srv.ColumnaRead(args, key)
+			fmt.Println(reads)
 		} else if write {
-			srv.ColumnaWrite(args, key)
+			writes := srv.ColumnaWrite(args, key)
+			fmt.Println(writes)
 		} else {
 			fmt.Println("error")
 		}
