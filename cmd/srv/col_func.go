@@ -83,15 +83,25 @@ func ColumnaRead(args []string, key string) []string {
 	placement := 0
 
 	leftover := ((keyint * len(key)) - len(gentext))
-
+	//fmt.Println(leftover)
+	if leftover != 0 {
+		counter := 0
+		for 0 < leftover {
+			list[keyint-1][(len(key)-1)-counter] = '*'
+			counter++
+			leftover--
+		}
+	}
 	//	fmt.Println(gentext)
 	//	fmt.Println(len(gentext))
 
 	for x := 0; x < len(key); x++ {
 		for y := 0; y < keyint; y++ {
 			if placement < len(gentext) {
-				list[y][findint(x, numlist)] = gentext[placement]
-				placement++
+				if list[y][findint(x, numlist)] != '*' {
+					list[y][findint(x, numlist)] = gentext[placement]
+					placement++
+				}
 			}
 		}
 	}
@@ -100,7 +110,9 @@ func ColumnaRead(args []string, key string) []string {
 
 	for i := 0; i < keyint; i++ {
 		for j := 0; j < len(key); j++ {
-			final += string(list[i][j])
+			if list[i][j] != '*' {
+				final += string(list[i][j])
+			}
 		}
 	}
 
