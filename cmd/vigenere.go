@@ -27,7 +27,11 @@ var vigenereCmd = &cobra.Command{
 	Short: "cipher and decypher using a polyalphabetic cipher",
 	Long: `the use of multiple caesar cipher to encode and decode messages 
 	
-	difficulty -- easy`,
+	difficulty -- easy
+	
+	Example: 
+		cipher vigenere -k string -r []string 
+		cipher vigenere -k string -w []string `,
 	Run: func(cmd *cobra.Command, args []string) {
 		read, _ := cmd.Flags().GetBool("read")
 		write, _ := cmd.Flags().GetBool("write")
@@ -60,4 +64,5 @@ func init() {
 	vigenereCmd.Flags().BoolP("read", "r", false, "decrypting the secret message")
 	vigenereCmd.Flags().BoolP("write", "w", false, "encrypting the secret message")
 	vigenereCmd.Flags().StringP("key", "k", "", "base key")
+	vigenereCmd.MarkFlagRequired("key")
 }

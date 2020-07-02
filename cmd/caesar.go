@@ -28,7 +28,11 @@ var caesarCmd = &cobra.Command{
 	Short: "encryption and decryption based on caesar cipher",
 	Long: `The use of keys to shift the points and encrypting and decrypting based on that singular key 
 	
-	difficulty -- weak`,
+	difficulty -- weak
+	
+	Example: 
+		cipher caesar -k int -r []string 
+		cipher caesar -k int -w []string `,
 	Run: func(cmd *cobra.Command, args []string) {
 		read, _ := cmd.Flags().GetBool("read")
 		write, _ := cmd.Flags().GetBool("write")
@@ -61,4 +65,7 @@ func init() {
 	caesarCmd.Flags().BoolP("read", "r", false, "decrypting the secret message")
 	caesarCmd.Flags().BoolP("write", "w", false, "encrypting the secret message")
 	caesarCmd.Flags().IntP("key", "k", 0, "base key")
+	//caesarCmd.SetUsageTemplate("Cipher caesar -k key -r/w 'secret messages'")
+	//caesarCmd.SetHelpTemplate("Cipher caesar -k key -r/w 'secret messages'")
+	caesarCmd.MarkFlagRequired("key")
 }

@@ -32,26 +32,30 @@ var rot13Cmd = &cobra.Command{
 	Long: `a simple letter substitution cipher that replaces a letter with the 13th letter after it, in the alphabet. 
 	ROT13 is a special case of the Caesar cipher which was developed in ancient Rome. 
 	
-	Difficulty - very weak`,
+	Difficulty - very weak
+	
+	Example: 
+		cipher rot13 -r []string
+		cipher rot13 -w []string `,
 	Run: func(cmd *cobra.Command, args []string) {
 		read, err := cmd.Flags().GetBool("read")
 		write, err2 := cmd.Flags().GetBool("write")
 		if (read == true) && (write == true) {
 			fmt.Println("Choose One please")
 		} else if read == true {
-			fmt.Println("reading secret file")
+			//fmt.Println("reading secret file")
 			srv.Rot13Read(args)
 			if err != nil {
 				fmt.Println(err)
 			}
 		} else if write == true {
-			fmt.Println("writing a secret file")
+			//fmt.Println("writing a secret file")
 			srv.Rot13Write(args)
 			if err != nil {
 				fmt.Println(err2)
 			}
 		} else {
-			fmt.Println("error, please proceed to the manual")
+			fmt.Println("error")
 		}
 	},
 }

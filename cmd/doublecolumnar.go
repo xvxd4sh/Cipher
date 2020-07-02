@@ -28,7 +28,11 @@ var doublecolumnarCmd = &cobra.Command{
 	Short: "using 2 different key word to cipher the secret message",
 	Long: `creating a cipher text based on a dual key base transpositional system
 	
-	difficulty -- normal `,
+	difficulty -- normal 
+	
+	Example: 
+		cipher doublecolumnar -k string -k string -r []string 
+		cipher doublecolumnar -k string -k string -w []string`,
 	Run: func(cmd *cobra.Command, args []string) {
 		read, _ := cmd.Flags().GetBool("read")
 		write, _ := cmd.Flags().GetBool("write")
@@ -63,4 +67,5 @@ func init() {
 	doublecolumnarCmd.Flags().BoolP("read", "r", false, "reading the secret message")
 	doublecolumnarCmd.Flags().BoolP("write", "w", false, " writing the secret message")
 	doublecolumnarCmd.Flags().StringSliceP("key", "k", []string{}, "2 string keys for base ")
+	doublecolumnarCmd.MarkFlagRequired("key")
 }

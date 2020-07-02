@@ -28,7 +28,12 @@ var columnarCmd = &cobra.Command{
 	Short: "cipher based on a dual-layer transpositional cipher",
 	Long: `Using a matrix of a base word to cipher a secret message. 
 	
-	dificulty -- normal`,
+	dificulty -- normal
+	
+	Example: 
+		cipher columnar -k string -r []string 
+		cipher columanr -k string -w []string 
+		`,
 	Run: func(cmd *cobra.Command, args []string) {
 		read, _ := cmd.Flags().GetBool("read")
 		write, _ := cmd.Flags().GetBool("write")
@@ -60,5 +65,5 @@ func init() {
 	columnarCmd.Flags().BoolP("read", "r", false, "reading the secret message")
 	columnarCmd.Flags().BoolP("write", "w", false, "writing the secret message")
 	columnarCmd.Flags().StringP("key", "k", "", "base word for key")
-
+	columnarCmd.MarkFlagRequired("key")
 }

@@ -29,7 +29,11 @@ var railsCmd = &cobra.Command{
 	Long: `using location manipulation of visual allignment of imaginary path drawn
 	 on a grid to convert string to cipher
 	 
-	 difficulty -- easy`,
+	 difficulty -- easy
+	 
+	 Example: 
+		cipher rails -k int -r []string 
+		cipher rails -k int -w []string `,
 	Run: func(cmd *cobra.Command, args []string) {
 		read, _ := cmd.Flags().GetBool("read")
 		write, _ := cmd.Flags().GetBool("write")
@@ -60,5 +64,6 @@ func init() {
 	railsCmd.Flags().BoolP("read", "r", false, "decrypt the secret message")
 	railsCmd.Flags().BoolP("write", "w", false, "encrypt the secret message")
 	railsCmd.Flags().IntP("key", "k", 0, "base key")
+	railsCmd.MarkFlagRequired("key")
 
 }

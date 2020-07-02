@@ -31,7 +31,23 @@ var cfgFile string
 var rootCmd = &cobra.Command{
 	Use:   "Cipher",
 	Short: "Command-line Interface for message decipher",
-	Long:  `Simple command line Tool for quick decryption of secret messages using key and different based systems `,
+	Long: `
+
+	          $$\           $$\                           
+	          \__|          $$ |                          
+	 $$$$$$$\ $$\  $$$$$$\  $$$$$$$\   $$$$$$\   $$$$$$\  
+	$$  _____|$$ |$$  __$$\ $$  __$$\ $$  __$$\ $$  __$$\ 
+	$$ /      $$ |$$ /  $$ |$$ |  $$ |$$$$$$$$ |$$ |  \__|
+	$$ |      $$ |$$ |  $$ |$$ |  $$ |$$   ____|$$ |      
+	\$$$$$$$\ $$ |$$$$$$$  |$$ |  $$ |\$$$$$$$\ $$ |      
+	 \_______|\__|$$  ____/ \__|  \__| \_______|\__|      
+	              $$ |                                    
+	              $$ |                                    
+	              \__|                                    
+
+	A tool to code and encode messages using different complexity of ciphers
+	
+	Progression of complexity based on subsitution and translocation method of ciphers`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	//Run: func(cmd *cobra.Command, args []string) { fmt.Println("Hello") },
@@ -59,6 +75,7 @@ func init() {
 	// when this action is called directly.
 	// rootCmd.Flags().BoolP("read", "r", false, "Dechiper the secret message")
 	// rootCmd.Flags().BoolP("write", "w", false, "chiper the secret message")
+
 }
 
 // initConfig reads in config file and ENV variables if set.
